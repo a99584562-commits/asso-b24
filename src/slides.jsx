@@ -6,7 +6,7 @@ import Calculator from "./Calculator.jsx";
 // Every slide is a full-bleed flex container. The deck (App) handles paging.
 function Frame({ children, className = "" }) {
   return (
-    <div className={`mx-auto flex h-full w-full max-w-[1180px] flex-col justify-center px-6 py-16 md:px-12 ${className}`}>
+    <div className={`mx-auto flex h-full w-full max-w-[78rem] flex-col justify-center px-6 py-16 md:px-12 ${className}`}>
       {children}
     </div>
   );
@@ -103,10 +103,10 @@ function SectionMark({ no, label }) {
       <div className="pointer-events-none absolute -right-32 top-1/2 h-[34rem] w-[34rem] -translate-y-1/2 rounded-full bg-ember/[0.07] blur-3xl" />
       <Frame>
         <Reveal i={0}>
-          <span className="font-display text-[7rem] font-semibold leading-none text-clay md:text-[11rem]">{no}</span>
+          <span className="text-aurora block font-display text-[9rem] font-bold leading-[0.85] tracking-tight opacity-90 md:text-[15rem]">{no}</span>
         </Reveal>
         <Reveal i={1}>
-          <h2 className="mt-2 font-display text-4xl font-semibold tracking-tight text-espresso md:text-6xl">{label}</h2>
+          <h2 className="mt-4 font-display text-5xl font-semibold tracking-tight text-espresso md:text-7xl">{label}</h2>
         </Reveal>
       </Frame>
     </div>
@@ -155,7 +155,7 @@ function Funnel() {
 function Kanban() {
   return (
     <div className="flex h-full w-full flex-col px-6 py-10 md:px-10">
-      <div className="mx-auto flex w-full max-w-[1240px] flex-1 flex-col">
+      <div className="mx-auto flex w-full max-w-[82rem] flex-1 flex-col">
         <Reveal i={0} className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <Eyebrow>Продажи · Так это выглядит в Битрикс24</Eyebrow>
@@ -576,7 +576,7 @@ function Cabinet() {
 function Demo() {
   return (
     <div className="flex h-full w-full flex-col px-6 py-10 md:px-10">
-      <div className="mx-auto flex w-full max-w-[1240px] flex-1 flex-col">
+      <div className="mx-auto flex w-full max-w-[82rem] flex-1 flex-col">
         <Reveal i={0} className="flex items-center justify-between">
           <div>
             <Eyebrow>Живое демо · нажмите на квартиру</Eyebrow>
@@ -635,7 +635,7 @@ function Showcase() {
 function CalcSlide() {
   return (
     <div className="flex h-full w-full flex-col px-6 py-10 md:px-10">
-      <div className="mx-auto flex w-full max-w-[1180px] flex-1 flex-col">
+      <div className="mx-auto flex w-full max-w-[78rem] flex-1 flex-col">
         <Reveal i={0} className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <Eyebrow>Вайбкод · Живой пример</Eyebrow>

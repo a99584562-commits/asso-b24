@@ -12,6 +12,26 @@ body,
   height: 100%;
 }
 
+/* scale the whole deck up on large screens so it doesn't look tiny on a TV/projector */
+html {
+  font-size: 16px;
+}
+@media (min-width: 1500px) {
+  html {
+    font-size: 17.5px;
+  }
+}
+@media (min-width: 1800px) {
+  html {
+    font-size: 19px;
+  }
+}
+@media (min-width: 2200px) {
+  html {
+    font-size: 21px;
+  }
+}
+
 body {
   margin: 0;
   background: #e7ebf6;

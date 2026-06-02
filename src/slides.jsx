@@ -1,6 +1,7 @@
-import { Bezel, Eyebrow, Icon, IconCircle, PillButton, Reveal } from "./ui.jsx";
+import { Bezel, Eyebrow, Icon, IconCircle, PillButton, Reveal, Tilt } from "./ui.jsx";
 import Shahmatka from "./Shahmatka.jsx";
 import { CrmKanban } from "./B24.jsx";
+import Calculator from "./Calculator.jsx";
 
 // Every slide is a full-bleed flex container. The deck (App) handles paging.
 function Frame({ children, className = "" }) {
@@ -576,16 +577,47 @@ function Showcase() {
       <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {VIBE.map((v, i) => (
           <Reveal key={v.t} i={3 + i}>
-            <div className="group relative flex h-full flex-col rounded-2xl bg-cream p-6 ring-1 ring-espresso/[0.06] transition-all duration-500 ease-spring hover:-translate-y-1 hover:ring-ember/30">
-              <IconCircle glyph={v.g} />
-              <h3 className="mt-4 font-display text-lg font-semibold text-espresso">{v.t}</h3>
-              <p className="mt-1.5 text-[15px] leading-relaxed text-umber">{v.d}</p>
-              {v.tag && <span className="mt-3 inline-flex w-max rounded-full bg-sage/12 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-sage">{v.tag}</span>}
-            </div>
+            <Tilt className="h-full">
+              <div className="group relative flex h-full flex-col rounded-2xl bg-cream p-6 ring-1 ring-espresso/[0.06] transition-shadow duration-500 hover:ring-ember/30 hover:shadow-[0_30px_60px_-40px_rgba(36,27,18,0.5)]">
+                <IconCircle glyph={v.g} />
+                <h3 className="mt-4 font-display text-lg font-semibold text-espresso">{v.t}</h3>
+                <p className="mt-1.5 text-[15px] leading-relaxed text-umber">{v.d}</p>
+                {v.tag && <span className="mt-3 inline-flex w-max rounded-full bg-sage/12 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-sage">{v.tag}</span>}
+              </div>
+            </Tilt>
           </Reveal>
         ))}
       </div>
     </Frame>
+  );
+}
+
+/* ─────────────── 14b. LIVE MORTGAGE CALCULATOR ─────────────── */
+function CalcSlide() {
+  return (
+    <div className="flex h-full w-full flex-col px-6 py-10 md:px-10">
+      <div className="mx-auto flex w-full max-w-[1180px] flex-1 flex-col">
+        <Reveal i={0} className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <Eyebrow>Вайбкод · Живой пример</Eyebrow>
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-espresso md:text-[2.6rem]">
+              Ипотечный калькулятор на сайт
+            </h2>
+          </div>
+          <p className="max-w-sm text-[15px] leading-relaxed text-umber">
+            Покупатель считает платёж сам — и оставляет заявку. Лид с готовым расчётом сразу падает в Битрикс24.
+            Покрутите ползунки →
+          </p>
+        </Reveal>
+        <Reveal i={1} className="mt-6 flex-1">
+          <Bezel className="h-full" tone="warm">
+            <div className="h-full p-3 md:p-4">
+              <Calculator />
+            </div>
+          </Bezel>
+        </Reveal>
+      </div>
+    </div>
   );
 }
 
@@ -641,5 +673,6 @@ export const SLIDES = [
   { id: "cabinet", section: "Сервис", el: <Cabinet /> },
   { id: "demo", section: "Демо", el: <Demo /> },
   { id: "showcase", section: "Вайбкод", el: <Showcase /> },
+  { id: "calc", section: "Вайбкод", el: <CalcSlide /> },
   { id: "road", section: "Внедрение", el: <Roadmap /> },
 ];

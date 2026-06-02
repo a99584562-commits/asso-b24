@@ -1,5 +1,6 @@
 // Shared premium UI primitives — Editorial Luxury system.
 // Thin-line icons (Phosphor-light style), double-bezel cards, eyebrow tags.
+import { useRef } from "react";
 
 const ic = "stroke-current fill-none";
 const sw = 1.25;
@@ -168,6 +169,40 @@ export function PillButton({ children, tone = "dark" }) {
 export function Reveal({ children, i = 0, className = "" }) {
   return (
     <div className={`animate-floatUp ${className}`} style={{ animationDelay: `${120 + i * 90}ms` }}>
+      {children}
+    </div>
+  );
+}
+
+// Magnetic 3D tilt — follows the mouse (disabled for touch). Wrap any card.
+export function Tilt({ children, className = "", max = 7 }) {
+  const ref = useRef(null);
+  const raf = useRef(0);
+
+  function onMove(e) {
+    if (e.pointerType !== "mouse") return;
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    cancelAnimationFrame(raf.current);
+    raf.current = requestAnimationFrame(() => {
+      el.style.transform = `perspective(1000px) rotateY(${px * max}deg) rotateX(${-py * max}deg) scale(1.015)`;
+    });
+  }
+  function reset() {
+    const el = ref.current;
+    if (el) el.style.transform = "";
+  }
+  return (
+    <div
+      ref={ref}
+      onPointerMove={onMove}
+      onPointerLeave={reset}
+      className={`[transition:transform_400ms_cubic-bezier(0.32,0.72,0,1)] will-change-transform ${className}`}
+      style={{ transformStyle: "preserve-3d" }}
+    >
       {children}
     </div>
   );

@@ -225,64 +225,135 @@ export default function Shahmatka() {
   );
 }
 
-// ─── schematic floor plans (drawn, not images) — vary by room count ───
-const PLANS = {
-  1: {
-    rooms: [
-      { x: 6, y: 6, w: 64, h: 46, l: "С/у" },
-      { x: 6, y: 52, w: 64, h: 40, l: "Прихожая" },
-      { x: 6, y: 92, w: 64, h: 52, l: "Кухня" },
-      { x: 70, y: 6, w: 110, h: 138, l: "Комната" },
-    ],
-    balcony: { x: 180, y: 36, w: 34, h: 78 },
-    win: [[110, 6, 150, 6], [6, 108, 6, 130]],
-  },
-  2: {
-    rooms: [
-      { x: 6, y: 6, w: 70, h: 54, l: "Кухня" },
-      { x: 6, y: 60, w: 70, h: 36, l: "С/у" },
-      { x: 6, y: 96, w: 70, h: 48, l: "Прихожая" },
-      { x: 76, y: 6, w: 104, h: 78, l: "Гостиная" },
-      { x: 76, y: 84, w: 104, h: 60, l: "Спальня" },
-    ],
-    balcony: { x: 180, y: 30, w: 34, h: 84 },
-    win: [[112, 6, 152, 6], [6, 18, 6, 44]],
-  },
-  3: {
-    rooms: [
-      { x: 6, y: 6, w: 64, h: 52, l: "Кухня" },
-      { x: 6, y: 58, w: 64, h: 34, l: "С/у" },
-      { x: 6, y: 92, w: 64, h: 52, l: "Прихожая" },
-      { x: 70, y: 6, w: 72, h: 82, l: "Гостиная" },
-      { x: 70, y: 88, w: 72, h: 56, l: "Спальня" },
-      { x: 142, y: 6, w: 72, h: 82, l: "Спальня" },
-      { x: 142, y: 88, w: 72, h: 56, l: "Ванная" },
-    ],
-    win: [[88, 6, 124, 6], [160, 6, 196, 6]],
-  },
-};
+// ─── realistic vector floor plans: walls, doors, windows, furniture ───
+const WC = "#3E4A63"; // walls
+const FC = "#9DA8BE"; // furniture lines
+const LC = "#5B677D"; // labels
+const fur = { stroke: FC, strokeWidth: 0.9, fill: "none", strokeLinejoin: "round", strokeLinecap: "round" };
+const furF = { ...fur, fill: "#EEF2F8" };
+
+const Room = ({ x, y, w, h, fill = "#F6F8FC" }) => <rect x={x} y={y} width={w} height={h} fill={fill} />;
+const Lab = ({ x, y, t, r }) => (
+  <text x={x} y={y} fontSize="7" fontWeight="600" fill={LC} textAnchor="middle" dominantBaseline="central" transform={r ? `rotate(${r} ${x} ${y})` : undefined}>{t}</text>
+);
+const Wall = ({ d, w = 2.6 }) => <path d={d} stroke={WC} strokeWidth={w} fill="none" strokeLinecap="butt" />;
+const Win = ({ x, y, w, h }) => (
+  <g>
+    <rect x={x} y={y} width={w} height={h} fill="#FBFCFE" />
+    {w >= h ? <line x1={x} y1={y + h / 2} x2={x + w} y2={y + h / 2} stroke={WC} strokeWidth="0.7" /> : <line x1={x + w / 2} y1={y} x2={x + w / 2} y2={y + h} stroke={WC} strokeWidth="0.7" />}
+  </g>
+);
+function Door({ hx, hy, r, a }) {
+  const R = (d) => (d * Math.PI) / 180;
+  const x1 = hx + r * Math.cos(R(a)), y1 = hy + r * Math.sin(R(a));
+  const x2 = hx + r * Math.cos(R(a + 90)), y2 = hy + r * Math.sin(R(a + 90));
+  return (<g {...fur}><line x1={hx} y1={hy} x2={x1} y2={y1} /><path d={`M ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2}`} /></g>);
+}
+// furniture
+const Bed = ({ x, y, w, h }) => (<g {...furF}><rect x={x} y={y} width={w} height={h} rx="2" /><rect x={x + 2} y={y + 2} width={w - 4} height={Math.min(9, h * 0.26)} rx="1.5" /><line x1={x + w / 2} y1={y + h * 0.34} x2={x + w / 2} y2={y + h - 2} /></g>);
+const Sofa = ({ x, y, w, h }) => (<g {...furF}><rect x={x} y={y} width={w} height={h} rx="2.5" /><rect x={x + 3} y={y + 3} width={w - 6} height={h * 0.45} rx="2" /></g>);
+const Tbl = ({ x, y, w, h }) => <rect x={x} y={y} width={w} height={h} rx="2" {...furF} />;
+const TV = ({ x, y, w }) => <rect x={x} y={y} width={w} height="2.6" rx="1" {...furF} />;
+const Kitchen = ({ x, y, w }) => (<g {...furF}><rect x={x} y={y} width={w} height="10" rx="1" />{[0.18, 0.38, 0.58, 0.78].map((f, i) => <circle key={i} cx={x + w * f} cy={y + 5} r="1.7" fill="none" stroke={FC} strokeWidth="0.8" />)}</g>);
+const Fridge = ({ x, y }) => (<g {...furF}><rect x={x} y={y} width="11" height="13" rx="1" /><line x1={x} y1={y + 5} x2={x + 11} y2={y + 5} /></g>);
+const Bath = ({ x, y, w, h }) => (<g {...furF}><rect x={x} y={y} width={w} height={h} rx="3" /><rect x={x + 2.5} y={y + 2.5} width={w - 5} height={h - 5} rx="2.5" fill="none" stroke={FC} strokeWidth="0.8" /></g>);
+const Toilet = ({ x, y }) => (<g {...furF}><rect x={x} y={y} width="9" height="3.5" rx="1" /><ellipse cx={x + 4.5} cy={y + 7.5} rx="4.5" ry="5.5" /></g>);
+const Sink = ({ x, y }) => (<g {...furF}><rect x={x} y={y} width="10" height="7" rx="1.5" /><circle cx={x + 5} cy={y + 3.5} r="2" fill="none" stroke={FC} strokeWidth="0.8" /></g>);
+const Wardrobe = ({ x, y, w, h }) => (<g {...furF}><rect x={x} y={y} width={w} height={h} /><line x1={x} y1={y} x2={x + w} y2={y + h} /><line x1={x + w} y1={y} x2={x} y2={y + h} /></g>);
+const Balc = ({ x, y, w, h }) => (
+  <g>
+    <Room x={x} y={y} w={w} h={h} fill="#EAF1FB" />
+    <Wall d={`M${x} ${y} H${x + w} V${y + h} H${x}`} w={1.8} />
+  </g>
+);
+
+// 2-комн (flagship)
+const Plan2 = () => (
+  <g>
+    <Room x={8} y={8} w={104} h={64} /><Room x={112} y={8} w={120} h={108} />
+    <Room x={8} y={72} w={64} h={88} /><Room x={72} y={72} w={40} h={44} /><Room x={72} y={116} w={160} h={44} />
+    <Balc x={198} y={20} w={34} h={70} />
+    {/* furniture */}
+    <Kitchen x={14} y={12} w={90} /><Fridge x={14} y={26} />
+    <Sofa x={140} y={94} w={80} h={16} /><Tbl x={152} y={68} w={52} h={13} /><TV x={150} y={11} w={36} />
+    <Bath x={93} y={78} w={15} h={32} /><Toilet x={76} y={80} /><Sink x={76} y={99} />
+    <Wardrobe x={12} y={80} w={12} h={40} />
+    <Bed x={150} y={122} w={46} h={34} /><Tbl x={199} y={124} w={9} h={9} /><Wardrobe x={78} y={120} w={14} h={36} />
+    {/* interior walls */}
+    <Wall d="M8 72 H28" /><Wall d="M44 72 H112" />
+    <Wall d="M72 72 V86" /><Wall d="M72 100 V132" /><Wall d="M72 146 V160" />
+    <Wall d="M112 8 V34" /><Wall d="M112 50 V116" />
+    <Wall d="M72 116 H150" /><Wall d="M166 116 H232" />
+    <Wall d="M198 20 V48" /><Wall d="M198 64 V90" />
+    {/* outer */}
+    <rect x={6} y={6} width={228} height={156} fill="none" stroke={WC} strokeWidth="3.4" />
+    {/* windows */}
+    <Win x={36} y={3.6} w={44} h={4.8} /><Win x={138} y={3.6} w={52} h={4.8} /><Win x={150} y={157.6} w={52} h={4.8} /><Win x={229.6} y={36} w={4.8} h={44} />
+    {/* doors */}
+    <Door hx={44} hy={160} r={20} a={180} /><Door hx={44} hy={72} r={15} a={90} />
+    <Door hx={72} hy={100} r={13} a={180} /><Door hx={72} hy={146} r={13} a={180} />
+    <Door hx={112} hy={50} r={15} a={90} /><Door hx={150} hy={116} r={15} a={0} /><Door hx={198} hy={64} r={13} a={180} />
+    {/* labels */}
+    <Lab x={60} y={40} t="Кухня" /><Lab x={130} y={40} t="Гостиная" /><Lab x={40} y={142} t="Прихожая" />
+    <Lab x={101} y={112} t="С/у" /><Lab x={110} y={140} t="Спальня" /><Lab x={215} y={55} t="Балкон" r={-90} />
+  </g>
+);
+
+// 1-комн
+const Plan1 = () => (
+  <g>
+    <Room x={8} y={8} w={56} h={48} /><Room x={8} y={56} w={56} h={48} /><Room x={8} y={104} w={56} h={56} />
+    <Room x={64} y={8} w={168} h={152} />
+    <Balc x={198} y={40} w={34} h={80} />
+    <Kitchen x={12} y={12} w={46} /><Fridge x={50} y={12} />
+    <Bath x={42} y={60} w={16} h={36} /><Toilet x={14} y={60} /><Sink x={14} y={84} />
+    <Wardrobe x={12} y={110} w={12} h={44} />
+    <Sofa x={78} y={120} w={74} h={18} /><Tbl x={94} y={92} w={46} h={14} /><TV x={98} y={11} w={36} /><Tbl x={80} y={36} w={30} h={24} />
+    <Bed x={180} y={104} w={44} h={42} /><Tbl x={172} y={106} w={8} h={9} />
+    <Wall d="M64 8 V26" /><Wall d="M64 42 V124" /><Wall d="M64 140 V160" />
+    <Wall d="M8 56 H64" />
+    <Wall d="M8 104 H28" /><Wall d="M44 104 H64" />
+    <Wall d="M198 40 V68" /><Wall d="M198 84 V120" />
+    <rect x={6} y={6} width={228} height={156} fill="none" stroke={WC} strokeWidth="3.4" />
+    <Win x={24} y={3.6} w={30} h={4.8} /><Win x={120} y={3.6} w={56} h={4.8} /><Win x={120} y={157.6} w={56} h={4.8} /><Win x={229.6} y={56} w={4.8} h={48} />
+    <Door hx={44} hy={160} r={20} a={180} /><Door hx={28} hy={104} r={13} a={0} />
+    <Door hx={64} hy={42} r={14} a={90} /><Door hx={64} hy={140} r={15} a={270} /><Door hx={198} hy={84} r={13} a={180} />
+    <Lab x={30} y={32} t="Кухня" /><Lab x={48} y={98} t="С/у" /><Lab x={36} y={150} t="Прихожая" />
+    <Lab x={120} y={150} t="Комната" /><Lab x={215} y={80} t="Балкон" r={-90} />
+  </g>
+);
+
+// 3-комн (2 спальни)
+const Plan3 = () => (
+  <g>
+    <Room x={8} y={8} w={72} h={64} /><Room x={80} y={8} w={152} h={64} />
+    <Room x={8} y={72} w={52} h={88} /><Room x={60} y={72} w={46} h={42} /><Room x={106} y={72} w={126} h={42} /><Room x={60} y={114} w={172} h={46} />
+    <Balc x={198} y={20} w={34} h={46} />
+    <Kitchen x={12} y={12} w={58} /><Fridge x={12} y={26} />
+    <Sofa x={108} y={50} w={80} h={16} /><Tbl x={124} y={30} w={48} h={12} /><TV x={128} y={11} w={34} />
+    <Bath x={88} y={76} w={14} h={32} /><Toilet x={64} y={78} /><Sink x={64} y={97} />
+    <Wardrobe x={12} y={76} w={12} h={40} />
+    <Bed x={150} y={76} w={44} h={32} /><Wardrobe x={110} y={76} w={12} h={34} />
+    <Bed x={150} y={120} w={44} h={34} /><Wardrobe x={66} y={120} w={12} h={36} />
+    <Wall d="M8 72 H20" /><Wall d="M36 72 H150" /><Wall d="M166 72 H232" />
+    <Wall d="M80 8 V28" /><Wall d="M80 44 V72" />
+    <Wall d="M60 72 V84" /><Wall d="M60 98 V128" /><Wall d="M60 142 V160" />
+    <Wall d="M106 72 V114" /><Wall d="M60 114 H232" />
+    <Wall d="M198 20 V30" /><Wall d="M198 44 V66" />
+    <rect x={6} y={6} width={228} height={156} fill="none" stroke={WC} strokeWidth="3.4" />
+    <Win x={26} y={3.6} w={36} h={4.8} /><Win x={108} y={3.6} w={44} h={4.8} /><Win x={229.6} y={80} w={4.8} h={26} /><Win x={140} y={157.6} w={52} h={4.8} /><Win x={229.6} y={28} w={4.8} h={22} />
+    <Door hx={36} hy={72} r={13} a={90} /><Door hx={40} hy={160} r={18} a={180} />
+    <Door hx={60} hy={84} r={11} a={0} /><Door hx={60} hy={142} r={14} a={0} />
+    <Door hx={80} hy={44} r={13} a={270} /><Door hx={150} hy={72} r={14} a={0} /><Door hx={198} hy={44} r={11} a={180} />
+    <Lab x={44} y={30} t="Кухня" /><Lab x={95} y={40} t="Гостиная" /><Lab x={96} y={108} t="С/у" />
+    <Lab x={32} y={150} t="Прихожая" /><Lab x={128} y={100} t="Спальня" /><Lab x={108} y={142} t="Спальня" /><Lab x={215} y={40} t="Балкон" r={-90} />
+  </g>
+);
 
 export function FloorPlan({ rooms }) {
-  const plan = PLANS[rooms] || PLANS[2];
-  const WALL = "#51607A";
   return (
-    <svg viewBox="0 0 220 150" className="h-full w-full" preserveAspectRatio="xMidYMid meet">
-      {plan.rooms.map((r, i) => (
-        <g key={i}>
-          <rect x={r.x} y={r.y} width={r.w} height={r.h} fill="#7C3AED" fillOpacity="0.05" stroke={WALL} strokeOpacity="0.4" strokeWidth="1.1" />
-          <text x={r.x + r.w / 2} y={r.y + r.h / 2} fontSize="7.5" fontWeight="600" fill="#51607A" textAnchor="middle" dominantBaseline="central">{r.l}</text>
-        </g>
-      ))}
-      {plan.balcony && (
-        <g>
-          <rect x={plan.balcony.x} y={plan.balcony.y} width={plan.balcony.w} height={plan.balcony.h} fill="#0EA5E9" fillOpacity="0.07" stroke={WALL} strokeOpacity="0.35" strokeWidth="1.1" />
-          <text x={plan.balcony.x + plan.balcony.w / 2} y={plan.balcony.y + plan.balcony.h / 2} fontSize="7" fontWeight="600" fill="#51607A" textAnchor="middle" dominantBaseline="central" transform={`rotate(-90 ${plan.balcony.x + plan.balcony.w / 2} ${plan.balcony.y + plan.balcony.h / 2})`}>Балкон</text>
-        </g>
-      )}
-      {(plan.win || []).map((w, i) => (
-        <line key={`w${i}`} x1={w[0]} y1={w[1]} x2={w[2]} y2={w[3]} stroke="#7C3AED" strokeWidth="2.6" strokeLinecap="round" />
-      ))}
-      <rect x="6" y="6" width="208" height="138" fill="none" stroke={WALL} strokeWidth="2.4" />
+    <svg viewBox="0 0 240 168" className="h-full w-full" preserveAspectRatio="xMidYMid meet">
+      {rooms === 1 ? <Plan1 /> : rooms === 3 ? <Plan3 /> : <Plan2 />}
     </svg>
   );
 }

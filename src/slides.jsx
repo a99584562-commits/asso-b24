@@ -160,7 +160,7 @@ function Kanban() {
           <div>
             <Eyebrow>Продажи · Так это выглядит в Битрикс24</Eyebrow>
             <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-espresso md:text-[2.6rem]">
-              Воронка как канбан-доска
+              Воронка в виде канбан-доски
             </h2>
           </div>
           <p className="max-w-sm text-[15px] leading-relaxed text-umber">

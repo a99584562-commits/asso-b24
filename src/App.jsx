@@ -62,8 +62,12 @@ export default function App() {
         </span>
       </div>
 
-      {/* the slide */}
-      <div key={slide.id} className="h-full w-full" style={{ animation: "floatUp 0.7s cubic-bezier(0.32,0.72,0,1) both" }}>
+      {/* the slide — direction-aware entrance */}
+      <div
+        key={slide.id}
+        className="h-full w-full"
+        style={{ animation: `${dir >= 0 ? "slideInRight" : "slideInLeft"} 0.6s cubic-bezier(0.32,0.72,0,1) both` }}
+      >
         {slide.el}
       </div>
 

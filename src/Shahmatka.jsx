@@ -72,7 +72,7 @@ export default function Shahmatka() {
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-umber">Жилой комплекс · Дом №8</p>
             <h3 className="font-display text-2xl font-semibold text-espresso">Шахматка квартир</h3>
           </div>
-          <div className="flex gap-3 text-[11px]">
+          <div className="flex gap-3 text-xs">
             {Object.entries(STATUS).map(([k, v]) => (
               <span key={k} className="inline-flex items-center gap-1.5 text-umber">
                 <span className={`h-2 w-2 rounded-full ${v.dot}`} />
@@ -84,7 +84,7 @@ export default function Shahmatka() {
 
         <div className="flex flex-1 gap-2">
           {/* floor rail */}
-          <div className="flex flex-col justify-around pr-1 text-[10px] font-medium text-umber/70">
+          <div className="flex flex-col justify-around pr-1 text-[11px] font-medium text-umber/70">
             {[7, 6, 5, 4, 3, 2, 1].map((fl) => (
               <span key={fl} className="leading-none">{fl} эт.</span>
             ))}
@@ -102,8 +102,8 @@ export default function Shahmatka() {
                     st.live ? "cursor-pointer hover:-translate-y-0.5" : "cursor-not-allowed"
                   } ${active ? "ring-2 ring-ember ring-offset-1 ring-offset-cream" : ""}`}
                 >
-                  <span className="text-sm font-bold leading-none">№{f.num}</span>
-                  <span className="mt-1 text-[10px] leading-tight opacity-80">
+                  <span className="text-base font-bold leading-none">№{f.num}</span>
+                  <span className="mt-1 text-[11px] leading-tight opacity-80">
                     {f.rooms}к · {f.area} м²
                   </span>
                 </button>
@@ -111,7 +111,7 @@ export default function Shahmatka() {
             })}
           </div>
         </div>
-        <p className="mt-3 text-[11px] text-umber/70">
+        <p className="mt-3 text-xs text-umber/70">
           Кликните <span className="font-semibold text-sage">свободную</span> квартиру — бронь уйдёт в CRM →
         </p>
       </div>
@@ -186,7 +186,7 @@ export default function Shahmatka() {
                   return (
                     <span
                       key={s}
-                      className={`flex-1 rounded-full px-1 py-1 text-center text-[9px] font-medium ${
+                      className={`flex-1 rounded-full px-1 py-1.5 text-center text-[10px] font-medium ${
                         done ? "bg-ember text-cream" : "bg-espresso/[0.05] text-umber/60"
                       }`}
                     >
@@ -195,7 +195,7 @@ export default function Shahmatka() {
                   );
                 })}
               </div>
-              <div className="mt-3 grid grid-cols-2 gap-2 text-[11px] text-umber">
+              <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-umber">
                 <span>Сумма: <b className="text-espresso">{deal.flat.price} млн ₽</b></span>
                 <span>Ответственный: <b className="text-espresso">авто</b></span>
               </div>
@@ -216,8 +216,8 @@ export default function Shahmatka() {
 function Spec({ label, value }) {
   return (
     <div className="rounded-xl bg-white/[0.06] px-3 py-2 ring-1 ring-white/10">
-      <dt className="text-[10px] uppercase tracking-wider text-cream/50">{label}</dt>
-      <dd className="mt-0.5 font-semibold text-cream">{value}</dd>
+      <dt className="text-[11px] uppercase tracking-wider text-cream/50">{label}</dt>
+      <dd className="mt-0.5 text-[15px] font-semibold text-cream">{value}</dd>
     </div>
   );
 }

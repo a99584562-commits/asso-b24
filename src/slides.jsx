@@ -1,5 +1,6 @@
 import { Bezel, Eyebrow, Icon, IconCircle, PillButton, Reveal } from "./ui.jsx";
 import Shahmatka from "./Shahmatka.jsx";
+import { CrmKanban } from "./B24.jsx";
 
 // Every slide is a full-bleed flex container. The deck (App) handles paging.
 function Frame({ children, className = "" }) {
@@ -32,9 +33,9 @@ function Title({ eyebrow, children, lead }) {
 function Cover() {
   return (
     <div className="relative flex h-full w-full items-center overflow-hidden">
-      {/* warm radial wash */}
-      <div className="pointer-events-none absolute -right-40 -top-40 h-[40rem] w-[40rem] rounded-full bg-ember/10 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-52 -left-40 h-[36rem] w-[36rem] rounded-full bg-sage/10 blur-3xl" />
+      {/* warm radial wash — slow drifting orbs */}
+      <div className="drift-a pointer-events-none absolute -right-40 -top-40 h-[40rem] w-[40rem] rounded-full bg-ember/10 blur-3xl" />
+      <div className="drift-b pointer-events-none absolute -bottom-52 -left-40 h-[36rem] w-[36rem] rounded-full bg-sage/10 blur-3xl" />
       <Frame>
         <Reveal i={0}>
           <Eyebrow>Презентация для застройщика</Eyebrow>
@@ -83,7 +84,7 @@ function Pain() {
                 <span className="mt-1 font-display text-3xl font-semibold text-ember/40">0{i + 1}</span>
                 <div>
                   <h3 className="font-display text-xl font-semibold text-espresso">{p.t}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-umber">{p.d}</p>
+                  <p className="mt-2 text-[15px] leading-relaxed text-umber">{p.d}</p>
                 </div>
               </div>
             </Bezel>
@@ -132,7 +133,7 @@ function Funnel() {
             <div className="group relative flex h-full flex-col rounded-2xl bg-clay/30 p-5 ring-1 ring-espresso/[0.06] transition-all duration-500 ease-spring hover:-translate-y-1 hover:bg-cream">
               <span className="font-display text-2xl font-semibold text-ember">{i + 1}</span>
               <h3 className="mt-3 font-display text-lg font-semibold leading-tight text-espresso">{s.t}</h3>
-              <p className="mt-1 text-xs leading-relaxed text-umber">{s.d}</p>
+              <p className="mt-1 text-[13px] leading-relaxed text-umber">{s.d}</p>
               {i < STAGES.length - 1 && (
                 <Icon.arrow className="absolute -right-2 top-1/2 hidden h-5 w-5 -translate-y-1/2 text-clay lg:block" />
               )}
@@ -146,6 +147,34 @@ function Funnel() {
         </p>
       </Reveal>
     </Frame>
+  );
+}
+
+/* ─────────────────── 2b. B24 KANBAN SCREEN ─────────────────── */
+function Kanban() {
+  return (
+    <div className="flex h-full w-full flex-col px-6 py-10 md:px-10">
+      <div className="mx-auto flex w-full max-w-[1240px] flex-1 flex-col">
+        <Reveal i={0} className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <Eyebrow>Продажи · Так это выглядит в Битрикс24</Eyebrow>
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-espresso md:text-[2.6rem]">
+              Воронка как канбан-доска
+            </h2>
+          </div>
+          <p className="max-w-sm text-[15px] leading-relaxed text-umber">
+            Все сделки на одном экране, по стадиям. Перетащил карточку — этап сменился, сумма по колонке пересчиталась.
+          </p>
+        </Reveal>
+        <Reveal i={1} className="mt-6 flex-1">
+          <Bezel className="h-full" tone="warm">
+            <div className="h-full p-2.5">
+              <CrmKanban />
+            </div>
+          </Bezel>
+        </Reveal>
+      </div>
+    </div>
   );
 }
 
@@ -171,7 +200,7 @@ function Channels() {
             <Reveal key={c} i={2 + i}>
               <div className="flex items-center gap-3 rounded-2xl bg-cream p-4 ring-1 ring-espresso/[0.06] transition-all duration-500 ease-spring hover:-translate-y-0.5 hover:ring-ember/30">
                 <span className="h-2.5 w-2.5 rounded-full bg-ember" />
-                <span className="text-sm font-semibold text-espresso">{c}</span>
+                <span className="text-[15px] font-semibold text-espresso">{c}</span>
               </div>
             </Reveal>
           ))}
@@ -198,11 +227,11 @@ function Analytics() {
       <Reveal i={3}>
         <Bezel className="mt-10">
           <div className="p-5 md:p-7">
-            <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr_0.8fr] gap-4 border-b border-espresso/10 pb-3 text-[11px] font-semibold uppercase tracking-wider text-umber/70">
+            <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr_0.8fr] gap-4 border-b border-espresso/10 pb-3 text-xs font-semibold uppercase tracking-wider text-umber/70">
               <span>Источник</span><span>Лиды</span><span>Сделки</span><span>Цена лида</span><span>ROI</span>
             </div>
             {SRC.map((s, i) => (
-              <div key={s.n} className="grid grid-cols-[1.4fr_1fr_1fr_1fr_0.8fr] items-center gap-4 border-b border-espresso/[0.06] py-3.5 text-sm">
+              <div key={s.n} className="grid grid-cols-[1.4fr_1fr_1fr_1fr_0.8fr] items-center gap-4 border-b border-espresso/[0.06] py-4 text-[15px]">
                 <span className="font-semibold text-espresso">{s.n}</span>
                 <span className="text-umber">{s.leads}</span>
                 <span className="font-semibold text-espresso">{s.deals}</span>
@@ -212,7 +241,7 @@ function Analytics() {
                 </span>
               </div>
             ))}
-            <p className="mt-4 text-xs text-umber/70">
+            <p className="mt-4 text-sm text-umber/70">
               Вывод за 2 клика: перелить бюджет с Авито на Домклик и контекст — те же деньги, вдвое больше сделок.
             </p>
           </div>
@@ -243,7 +272,7 @@ function Telephony() {
                 <IconCircle glyph={x.g} />
                 <div>
                   <h3 className="font-display text-lg font-semibold text-espresso">{x.t}</h3>
-                  <p className="text-sm text-umber">{x.d}</p>
+                  <p className="text-[15px] text-umber">{x.d}</p>
                 </div>
               </div>
             </Reveal>
@@ -279,14 +308,15 @@ function Construction() {
             <div className="space-y-2.5">
               {GANTT.map((g, i) => (
                 <div key={g.t} className="grid grid-cols-[10rem_1fr] items-center gap-4 md:grid-cols-[13rem_1fr]">
-                  <span className={`truncate text-sm ${g.now ? "font-semibold text-espresso" : "text-umber"}`}>{g.t}</span>
-                  <div className="relative h-7 rounded-full bg-espresso/[0.04]">
+                  <span className={`truncate text-[15px] ${g.now ? "font-semibold text-espresso" : "text-umber"}`}>{g.t}</span>
+                  <div className="relative h-8 rounded-full bg-espresso/[0.04]">
                     <div
-                      className={`absolute top-0 flex h-7 items-center rounded-full px-3 text-[11px] font-medium ${
+                      className={`grow-x absolute top-0 flex h-8 items-center rounded-full px-3 text-xs font-medium ${
                         g.done ? "bg-sage/30 text-bark" : g.now ? "bg-ember text-cream" : "bg-clay text-bark/70"
                       }`}
-                      style={{ left: `${g.a}%`, width: `${g.w}%` }}
+                      style={{ left: `${g.a}%`, width: `${g.w}%`, animationDelay: `${250 + i * 110}ms` }}
                     >
+                      {g.now && <span className="pulse-dot mr-1.5 h-1.5 w-1.5 rounded-full bg-cream" />}
                       {g.done ? "готово" : g.now ? "в работе" : "план"}
                     </div>
                   </div>
@@ -319,7 +349,7 @@ function Procurement() {
             <div className="relative flex h-full flex-col rounded-2xl bg-cream p-5 ring-1 ring-espresso/[0.06]">
               <IconCircle glyph={p.g} tone="bark" />
               <h3 className="mt-4 font-display text-lg font-semibold text-espresso">{p.t}</h3>
-              <p className="mt-1 text-sm text-umber">{p.d}</p>
+              <p className="mt-1 text-[15px] text-umber">{p.d}</p>
               <span className="mt-3 text-[11px] font-semibold uppercase tracking-wider text-ember">Этап {i + 1}</span>
             </div>
           </Reveal>
@@ -353,7 +383,7 @@ function Docs() {
                 </span>
                 <div>
                   <h3 className="font-semibold text-espresso">{x.t}</h3>
-                  <p className="text-sm text-umber">{x.d}</p>
+                  <p className="text-[15px] text-umber">{x.d}</p>
                 </div>
               </div>
             </Reveal>
@@ -382,7 +412,7 @@ function Team() {
               <div className="flex h-full flex-col p-6">
                 <IconCircle glyph={x.g} tone="sage" />
                 <h3 className="mt-4 font-display text-xl font-semibold text-espresso">{x.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-umber">{x.d}</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-umber">{x.d}</p>
               </div>
             </Bezel>
           </Reveal>
@@ -411,8 +441,8 @@ function Dashboard() {
             <Bezel className="h-full">
               <div className="flex h-full flex-col p-6">
                 <span className="font-display text-3xl font-semibold text-espresso md:text-4xl">{k.v}</span>
-                <span className="mt-2 text-sm font-medium text-bark">{k.l}</span>
-                <span className="mt-1 text-xs text-sage">{k.sub}</span>
+                <span className="mt-2 text-[15px] font-medium text-bark">{k.l}</span>
+                <span className="mt-1 text-sm text-sage">{k.sub}</span>
               </div>
             </Bezel>
           </Reveal>
@@ -445,9 +475,9 @@ function Service() {
               <div className="flex items-center justify-between gap-4 rounded-2xl bg-cream p-5 ring-1 ring-espresso/[0.06]">
                 <div>
                   <h3 className="font-semibold text-espresso">{x.t}</h3>
-                  <p className="text-sm text-umber">{x.d}</p>
+                  <p className="text-[15px] text-umber">{x.d}</p>
                 </div>
-                <span className="shrink-0 rounded-full bg-sage/12 px-3 py-1 text-[11px] font-semibold text-sage">{x.s}</span>
+                <span className="shrink-0 rounded-full bg-sage/12 px-3 py-1 text-xs font-semibold text-sage">{x.s}</span>
               </div>
             </Reveal>
           ))}
@@ -549,7 +579,7 @@ function Showcase() {
             <div className="group relative flex h-full flex-col rounded-2xl bg-cream p-6 ring-1 ring-espresso/[0.06] transition-all duration-500 ease-spring hover:-translate-y-1 hover:ring-ember/30">
               <IconCircle glyph={v.g} />
               <h3 className="mt-4 font-display text-lg font-semibold text-espresso">{v.t}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-umber">{v.d}</p>
+              <p className="mt-1.5 text-[15px] leading-relaxed text-umber">{v.d}</p>
               {v.tag && <span className="mt-3 inline-flex w-max rounded-full bg-sage/12 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-sage">{v.tag}</span>}
             </div>
           </Reveal>
@@ -578,7 +608,7 @@ function Roadmap() {
             <div className="flex h-full flex-col rounded-2xl bg-clay/30 p-6 ring-1 ring-espresso/[0.06]">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-ember">{r.ph}</span>
               <h3 className="mt-2 font-display text-xl font-semibold text-espresso">{r.t}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-umber">{r.d}</p>
+              <p className="mt-2 flex-1 text-[15px] leading-relaxed text-umber">{r.d}</p>
               <span className="mt-4 inline-flex w-max items-center gap-1.5 rounded-full bg-cream px-3 py-1 text-xs font-medium text-bark ring-1 ring-espresso/[0.06]">
                 {r.w}
               </span>
@@ -596,6 +626,7 @@ export const SLIDES = [
   { id: "pain", section: "Проблемы", el: <Pain /> },
   { id: "s1", section: "Продажи", el: <SectionMark no="01" label="Продажи" /> },
   { id: "funnel", section: "Продажи", el: <Funnel /> },
+  { id: "kanban", section: "Продажи", el: <Kanban /> },
   { id: "channels", section: "Продажи", el: <Channels /> },
   { id: "analytics", section: "Продажи", el: <Analytics /> },
   { id: "tel", section: "Продажи", el: <Telephony /> },

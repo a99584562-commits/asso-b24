@@ -180,7 +180,7 @@ function Kanban() {
 }
 
 /* ─────────────────────────── 3. CHANNELS ─────────────────────────── */
-const CHANNELS = ["Сайт застройщика", "Авито", "ЦИАН", "Домклик", "Звонки", "WhatsApp", "Telegram", "Email"];
+const CHANNELS = ["Сайт застройщика", "Авито", "ЦИАН", "Домклик", "Звонки", "MAX", "Telegram", "Email"];
 function Channels() {
   return (
     <Frame>

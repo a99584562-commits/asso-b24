@@ -536,6 +536,16 @@ function Cabinet() {
           <Title eyebrow="Сервис · Личный кабинет" lead="Дольщик в любой момент видит статус своей квартиры: этап стройки, документы, графики оплат — как трекинг заказа в Ozon или CDEK. Меньше звонков в офис, выше доверие.">
             Личный кабинет покупателя
           </Title>
+          <Reveal i={3}>
+            <div className="glass-soft mt-7 flex items-start gap-3.5 rounded-2xl px-5 py-4">
+              <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-ember/12 text-ember ring-1 ring-ember/20">
+                <Icon.arrowUpRight className="h-5 w-5 stroke-current fill-none" />
+              </span>
+              <p className="text-[15px] leading-relaxed text-bark">
+                После сделки клиенту уходит <span className="font-semibold text-espresso">персональная ссылка</span> — он открывает её с телефона и видит, на каком этапе стройка дома, где он купил квартиру.
+              </p>
+            </div>
+          </Reveal>
         </div>
         <Reveal i={3}>
           <Bezel tone="dark">

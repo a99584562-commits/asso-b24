@@ -599,35 +599,6 @@ function Roadmap() {
   );
 }
 
-/* ─────────────────────────── 16. FINAL ─────────────────────────── */
-function Final() {
-  return (
-    <div className="relative flex h-full w-full items-center overflow-hidden">
-      <div className="pointer-events-none absolute -left-40 top-1/2 h-[34rem] w-[34rem] -translate-y-1/2 rounded-full bg-ember/[0.08] blur-3xl" />
-      <Frame>
-        <Reveal i={0}><Eyebrow>Внедрение · Ижевск</Eyebrow></Reveal>
-        <Reveal i={1}>
-          <h2 className="mt-6 max-w-3xl font-display text-[2.6rem] font-semibold leading-[1.05] tracking-tight text-espresso md:text-[4rem]">
-            Соберём Битрикс24 под <span className="italic text-ember">процессы АССО-Строй</span>
-          </h2>
-        </Reveal>
-        <Reveal i={2}>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-umber">
-            Покажем систему на ваших объектах, настроим воронку и внутренние процессы, докрутим то, чего нет в коробке.
-            Начнём с бесплатного аудита процессов.
-          </p>
-        </Reveal>
-        <Reveal i={3}>
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <PillButton tone="ember">Запланировать демо</PillButton>
-            <span className="text-sm text-umber/80">Битрикс24 и amoCRM «под ключ»</span>
-          </div>
-        </Reveal>
-      </Frame>
-    </div>
-  );
-}
-
 // ── deck definition: title shown in the progress rail ──
 export const SLIDES = [
   { id: "cover", section: "Старт", el: <Cover /> },
@@ -649,5 +620,4 @@ export const SLIDES = [
   { id: "demo", section: "Демо", el: <Demo /> },
   { id: "showcase", section: "Вайбкод", el: <Showcase /> },
   { id: "road", section: "Внедрение", el: <Roadmap /> },
-  { id: "final", section: "Контакты", el: <Final /> },
 ];

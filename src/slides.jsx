@@ -196,15 +196,22 @@ function Channels() {
             </div>
           </Reveal>
         </div>
-        <div className="grid grid-cols-2 gap-3">
-          {CHANNELS.map((c, i) => (
-            <Reveal key={c} i={2 + i}>
-              <div className="flex items-center gap-3 rounded-2xl bg-cream p-4 ring-1 ring-espresso/[0.06] transition-all duration-500 ease-spring hover:-translate-y-0.5 hover:ring-ember/30">
-                <span className="h-2.5 w-2.5 rounded-full bg-ember" />
-                <span className="text-[15px] font-semibold text-espresso">{c}</span>
-              </div>
-            </Reveal>
-          ))}
+        <div>
+          <div className="grid grid-cols-2 gap-3">
+            {CHANNELS.map((c, i) => (
+              <Reveal key={c} i={2 + i}>
+                <div className="flex items-center gap-3 rounded-2xl bg-cream p-4 ring-1 ring-espresso/[0.06] transition-all duration-500 ease-spring hover:-translate-y-0.5 hover:ring-ember/30">
+                  <span className="h-2.5 w-2.5 rounded-full bg-ember" />
+                  <span className="text-[15px] font-semibold text-espresso">{c}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal i={11}>
+            <p className="mt-4 text-[13px] leading-relaxed text-umber/70">
+              Сайт, формы и Авито — нативно «из коробки». ЦИАН, Домклик и другие площадки — через готовые приложения Маркета Битрикс24.
+            </p>
+          </Reveal>
         </div>
       </div>
     </Frame>

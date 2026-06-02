@@ -56,8 +56,6 @@ export default function App() {
       <div className="pointer-events-none absolute left-6 top-6 z-40 hidden items-center gap-2.5 md:flex">
         <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-espresso text-[11px] font-bold text-cream">А</span>
         <span className="text-sm font-semibold tracking-tight text-espresso">АССО-Строй</span>
-        <span className="text-clay">×</span>
-        <span className="text-sm font-medium text-umber">ЛАЙМ</span>
       </div>
 
       {/* section + counter */}

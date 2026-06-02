@@ -37,7 +37,7 @@ function Cover() {
       <div className="pointer-events-none absolute -bottom-52 -left-40 h-[36rem] w-[36rem] rounded-full bg-sage/10 blur-3xl" />
       <Frame>
         <Reveal i={0}>
-          <Eyebrow>Презентация · ЛАЙМ × АССО-Строй</Eyebrow>
+          <Eyebrow>Презентация для АССО-Строй</Eyebrow>
         </Reveal>
         <Reveal i={1}>
           <h1 className="mt-7 font-display text-[3.4rem] font-semibold leading-[0.98] tracking-tight text-espresso md:text-[5.4rem]">
@@ -605,7 +605,7 @@ function Final() {
     <div className="relative flex h-full w-full items-center overflow-hidden">
       <div className="pointer-events-none absolute -left-40 top-1/2 h-[34rem] w-[34rem] -translate-y-1/2 rounded-full bg-ember/[0.08] blur-3xl" />
       <Frame>
-        <Reveal i={0}><Eyebrow>Команда ЛАЙМ · Ижевск</Eyebrow></Reveal>
+        <Reveal i={0}><Eyebrow>Внедрение · Ижевск</Eyebrow></Reveal>
         <Reveal i={1}>
           <h2 className="mt-6 max-w-3xl font-display text-[2.6rem] font-semibold leading-[1.05] tracking-tight text-espresso md:text-[4rem]">
             Соберём Битрикс24 под <span className="italic text-ember">процессы АССО-Строй</span>
@@ -620,7 +620,7 @@ function Final() {
         <Reveal i={3}>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <PillButton tone="ember">Запланировать демо</PillButton>
-            <span className="text-sm text-umber/80">limecrm.ru · Битрикс24 и amoCRM «под ключ»</span>
+            <span className="text-sm text-umber/80">Битрикс24 и amoCRM «под ключ»</span>
           </div>
         </Reveal>
       </Frame>

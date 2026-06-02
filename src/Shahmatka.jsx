@@ -132,16 +132,28 @@ export default function Shahmatka() {
             <div className="flex h-full flex-col">
               <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-ember/90">Квартира</p>
               <div className="mt-1 flex items-baseline gap-3">
-                <h3 className="font-display text-4xl font-semibold">№{selFlat.num}</h3>
+                <h3 className="font-display text-3xl font-semibold">№{selFlat.num}</h3>
                 <span className="rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-medium">{ROOMS[selFlat.rooms]}</span>
               </div>
-              <dl className="mt-5 grid grid-cols-2 gap-3 text-sm">
-                <Spec label="Этаж" value={`${selFlat.floor} из 7`} />
-                <Spec label="Площадь" value={`${selFlat.area} м²`} />
-                <Spec label="Цена" value={`${selFlat.price} млн ₽`} />
-                <Spec label="Статус" value={STATUS[selFlat.status].label} />
-              </dl>
-              <div className="mt-auto pt-5">
+
+              {/* floor plan */}
+              <div className="mt-3 flex min-h-0 flex-1 flex-col rounded-2xl bg-white/[0.92] p-3">
+                <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-bark/45">Планировка</p>
+                <div className="min-h-0 flex-1">
+                  <FloorPlan rooms={selFlat.rooms} />
+                </div>
+              </div>
+
+              {/* compact specs */}
+              <div className="mt-3 flex flex-wrap items-center gap-x-3.5 gap-y-1 text-xs text-cream/70">
+                <span>Этаж <b className="text-cream">{selFlat.floor}/7</b></span>
+                <span className="text-cream/25">·</span>
+                <span>Площадь <b className="text-cream">{selFlat.area} м²</b></span>
+                <span className="text-cream/25">·</span>
+                <span>Цена <b className="text-cream">{selFlat.price} млн ₽</b></span>
+              </div>
+
+              <div className="mt-3">
                 {selFlat.status === "free" ? (
                   <button
                     onClick={() => book(selFlat)}
@@ -210,6 +222,68 @@ export default function Shahmatka() {
         )}
       </div>
     </div>
+  );
+}
+
+// ─── schematic floor plans (drawn, not images) — vary by room count ───
+const PLANS = {
+  1: {
+    rooms: [
+      { x: 6, y: 6, w: 64, h: 46, l: "С/у" },
+      { x: 6, y: 52, w: 64, h: 40, l: "Прихожая" },
+      { x: 6, y: 92, w: 64, h: 52, l: "Кухня" },
+      { x: 70, y: 6, w: 110, h: 138, l: "Комната" },
+    ],
+    balcony: { x: 180, y: 36, w: 34, h: 78 },
+    win: [[110, 6, 150, 6], [6, 108, 6, 130]],
+  },
+  2: {
+    rooms: [
+      { x: 6, y: 6, w: 70, h: 54, l: "Кухня" },
+      { x: 6, y: 60, w: 70, h: 36, l: "С/у" },
+      { x: 6, y: 96, w: 70, h: 48, l: "Прихожая" },
+      { x: 76, y: 6, w: 104, h: 78, l: "Гостиная" },
+      { x: 76, y: 84, w: 104, h: 60, l: "Спальня" },
+    ],
+    balcony: { x: 180, y: 30, w: 34, h: 84 },
+    win: [[112, 6, 152, 6], [6, 18, 6, 44]],
+  },
+  3: {
+    rooms: [
+      { x: 6, y: 6, w: 64, h: 52, l: "Кухня" },
+      { x: 6, y: 58, w: 64, h: 34, l: "С/у" },
+      { x: 6, y: 92, w: 64, h: 52, l: "Прихожая" },
+      { x: 70, y: 6, w: 72, h: 82, l: "Гостиная" },
+      { x: 70, y: 88, w: 72, h: 56, l: "Спальня" },
+      { x: 142, y: 6, w: 72, h: 82, l: "Спальня" },
+      { x: 142, y: 88, w: 72, h: 56, l: "Ванная" },
+    ],
+    win: [[88, 6, 124, 6], [160, 6, 196, 6]],
+  },
+};
+
+export function FloorPlan({ rooms }) {
+  const plan = PLANS[rooms] || PLANS[2];
+  const WALL = "#51607A";
+  return (
+    <svg viewBox="0 0 220 150" className="h-full w-full" preserveAspectRatio="xMidYMid meet">
+      {plan.rooms.map((r, i) => (
+        <g key={i}>
+          <rect x={r.x} y={r.y} width={r.w} height={r.h} fill="#7C3AED" fillOpacity="0.05" stroke={WALL} strokeOpacity="0.4" strokeWidth="1.1" />
+          <text x={r.x + r.w / 2} y={r.y + r.h / 2} fontSize="7.5" fontWeight="600" fill="#51607A" textAnchor="middle" dominantBaseline="central">{r.l}</text>
+        </g>
+      ))}
+      {plan.balcony && (
+        <g>
+          <rect x={plan.balcony.x} y={plan.balcony.y} width={plan.balcony.w} height={plan.balcony.h} fill="#0EA5E9" fillOpacity="0.07" stroke={WALL} strokeOpacity="0.35" strokeWidth="1.1" />
+          <text x={plan.balcony.x + plan.balcony.w / 2} y={plan.balcony.y + plan.balcony.h / 2} fontSize="7" fontWeight="600" fill="#51607A" textAnchor="middle" dominantBaseline="central" transform={`rotate(-90 ${plan.balcony.x + plan.balcony.w / 2} ${plan.balcony.y + plan.balcony.h / 2})`}>Балкон</text>
+        </g>
+      )}
+      {(plan.win || []).map((w, i) => (
+        <line key={`w${i}`} x1={w[0]} y1={w[1]} x2={w[2]} y2={w[3]} stroke="#7C3AED" strokeWidth="2.6" strokeLinecap="round" />
+      ))}
+      <rect x="6" y="6" width="208" height="138" fill="none" stroke={WALL} strokeWidth="2.4" />
+    </svg>
   );
 }
 

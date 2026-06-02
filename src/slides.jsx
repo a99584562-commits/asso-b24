@@ -37,7 +37,7 @@ function Cover() {
       <div className="pointer-events-none absolute -bottom-52 -left-40 h-[36rem] w-[36rem] rounded-full bg-sage/10 blur-3xl" />
       <Frame>
         <Reveal i={0}>
-          <Eyebrow>Презентация для АССО-Строй</Eyebrow>
+          <Eyebrow>Презентация для застройщика</Eyebrow>
         </Reveal>
         <Reveal i={1}>
           <h1 className="mt-7 font-display text-[3.4rem] font-semibold leading-[0.98] tracking-tight text-espresso md:text-[5.4rem]">
@@ -55,15 +55,6 @@ function Cover() {
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <PillButton tone="ember">Смотреть презентацию</PillButton>
             <span className="text-sm text-umber/80">Листайте стрелками&nbsp;→&nbsp;или свайпом</span>
-          </div>
-        </Reveal>
-        <Reveal i={4}>
-          <div className="mt-14 flex flex-wrap gap-x-10 gap-y-3 text-sm text-umber/80">
-            <span>ЖК «Настроение»</span>
-            <span className="text-clay">·</span>
-            <span>Ижевск, с 1995 года</span>
-            <span className="text-clay">·</span>
-            <span>Продажи + стройка + сервис</span>
           </div>
         </Reveal>
       </Frame>
@@ -159,7 +150,7 @@ function Funnel() {
 }
 
 /* ─────────────────────────── 3. CHANNELS ─────────────────────────── */
-const CHANNELS = ["Сайт АССО-Строй", "Авито", "ЦИАН", "Домклик", "Звонки", "WhatsApp", "Telegram", "Email"];
+const CHANNELS = ["Сайт застройщика", "Авито", "ЦИАН", "Домклик", "Звонки", "WhatsApp", "Telegram", "Email"];
 function Channels() {
   return (
     <Frame>
@@ -479,7 +470,7 @@ function Cabinet() {
         <Reveal i={3}>
           <Bezel tone="dark">
             <div className="p-6">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ember/90">Кв. №42 · ЖК «Настроение»</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ember/90">Кв. №42 · ваш ЖК</p>
               <h3 className="mt-1 font-display text-2xl font-semibold text-cream">Ваша квартира строится</h3>
               <div className="mt-6 space-y-4">
                 {[
@@ -549,7 +540,7 @@ const VIBE = [
 function Showcase() {
   return (
     <Frame>
-      <Title eyebrow="Сверх коробки · Вайбкод" lead="Битрикс24 — гибкая платформа. То, чего нет в коробке, мы дорабатываем под АССО-Строй. Вот примеры решений, которые можно развернуть под вас.">
+      <Title eyebrow="Сверх коробки · Вайбкод" lead="Битрикс24 — гибкая платформа. То, чего нет в коробке, мы дорабатываем под ваши процессы. Вот примеры решений, которые можно развернуть под вас.">
         Что докрутим именно под вас
       </Title>
       <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -573,7 +564,7 @@ const ROAD = [
   { ph: "Этап 1", t: "Запуск продаж", d: "Воронка, каналы, телефония, обучение менеджеров.", w: "2–3 недели" },
   { ph: "Этап 2", t: "Внутренний контур", d: "Стройка, закупки, документооборот, портал команды.", w: "3–4 недели" },
   { ph: "Этап 3", t: "Аналитика и сервис", d: "Сквозная аналитика, дашборды, гарантийный сервис.", w: "2 недели" },
-  { ph: "Этап 4", t: "Кастом под АССО-Строй", d: "Шахматка, личный кабинет, интеграции с площадками.", w: "по проекту" },
+  { ph: "Этап 4", t: "Кастомные доработки", d: "Шахматка, личный кабинет, интеграции с площадками.", w: "по проекту" },
 ];
 function Roadmap() {
   return (

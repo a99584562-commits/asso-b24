@@ -69,7 +69,7 @@ export default function Shahmatka() {
       <div className="flex h-full flex-col rounded-[calc(2rem-0.375rem)] bg-cream p-5">
         <div className="mb-4 flex items-end justify-between">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-umber">ЖК «Настроение» · Дом №8</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-umber">Жилой комплекс · Дом №8</p>
             <h3 className="font-display text-2xl font-semibold text-espresso">Шахматка квартир</h3>
           </div>
           <div className="flex gap-3 text-[11px]">

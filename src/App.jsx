@@ -52,12 +52,6 @@ export default function App() {
         <div className="h-full bg-ember transition-all duration-700 ease-spring" style={{ width: `${progress}%` }} />
       </div>
 
-      {/* floating brand pill */}
-      <div className="pointer-events-none absolute left-6 top-6 z-40 hidden items-center gap-2.5 md:flex">
-        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-espresso text-[11px] font-bold text-cream">А</span>
-        <span className="text-sm font-semibold tracking-tight text-espresso">АССО-Строй</span>
-      </div>
-
       {/* section + counter */}
       <div className="absolute right-6 top-5 z-40 flex items-center gap-3 text-xs font-medium text-umber">
         <span className="hidden rounded-full bg-espresso/[0.04] px-3 py-1 uppercase tracking-[0.18em] ring-1 ring-espresso/[0.06] sm:inline">

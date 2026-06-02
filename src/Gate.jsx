@@ -37,7 +37,7 @@ export default function Gate({ children }) {
             </span>
             <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.24em] text-umber">Закрытый показ</p>
             <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-espresso">
-              Битрикс24 для <span className="italic text-ember">АССО-Строй</span>
+Битрикс24 для <span className="italic text-ember">застройщика</span>
             </h1>
             <p className="mt-3 text-sm leading-relaxed text-umber">
               Презентация доступна по паролю. Введите его, чтобы открыть показ.
@@ -70,7 +70,7 @@ export default function Gate({ children }) {
             </form>
           </div>
         </div>
-        <p className="mt-5 text-center text-xs text-umber/60">Ижевск · ЖК «Настроение»</p>
+        <p className="mt-5 text-center text-xs text-umber/60">Закрытый показ · по паролю</p>
       </div>
     </div>
   );

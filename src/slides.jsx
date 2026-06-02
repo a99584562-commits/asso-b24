@@ -495,38 +495,6 @@ function Dashboard() {
   );
 }
 
-/* ─────────────────────────── 11. SERVICE ─────────────────────────── */
-function Service() {
-  return (
-    <Frame>
-      <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-        <div>
-          <Title eyebrow="Сервис · Постпродажа" lead="Отношения с дольщиком не заканчиваются сделкой. Гарантийные обращения после заселения ведутся как заявки — с исполнителем, сроком и контролем.">
-            Гарантийный сервис <br /> после заселения
-          </Title>
-        </div>
-        <div className="space-y-3">
-          {[
-            { t: "Обращение жильца", d: "С сайта, QR в подъезде или звонка — сразу в систему", s: "Принято" },
-            { t: "Назначение мастера", d: "Заявка уходит ответственному со сроком", s: "В работе" },
-            { t: "Контроль и закрытие", d: "Фотоотчёт, обратная связь, оценка", s: "Решено" },
-          ].map((x, i) => (
-            <Reveal key={x.t} i={3 + i}>
-              <div className="flex items-center justify-between gap-4 rounded-2xl glass-card p-5 ring-1 ring-espresso/[0.06]">
-                <div>
-                  <h3 className="font-semibold text-espresso">{x.t}</h3>
-                  <p className="text-[15px] text-umber">{x.d}</p>
-                </div>
-                <span className="shrink-0 rounded-full bg-sage/12 px-3 py-1 text-xs font-semibold text-sage">{x.s}</span>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </Frame>
-  );
-}
-
 /* ─────────────────────────── 12. CABINET ─────────────────────────── */
 function Cabinet() {
   return (
@@ -554,7 +522,7 @@ function Cabinet() {
               <h3 className="mt-1 font-display text-2xl font-semibold text-cream">Ваша квартира строится</h3>
               <div className="mt-6 space-y-4">
                 {[
-                  { t: "ДДУ заключён", done: true },
+                  { t: "Котлован и фундамент", done: true },
                   { t: "Монолит завершён", done: true },
                   { t: "Фасад и окна", done: true },
                   { t: "Отделка и сети", now: true },
@@ -719,7 +687,6 @@ export const SLIDES = [
   { id: "team", section: "Внутрянка", el: <Team /> },
   { id: "dash", section: "Внутрянка", el: <Dashboard /> },
   { id: "s3", section: "Сервис", el: <SectionMark no="03" label="Клиентский сервис" /> },
-  { id: "service", section: "Сервис", el: <Service /> },
   { id: "cabinet", section: "Сервис", el: <Cabinet /> },
   { id: "demo", section: "Демо", el: <Demo /> },
   { id: "showcase", section: "Вайбкод", el: <Showcase /> },

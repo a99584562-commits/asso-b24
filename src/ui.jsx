@@ -119,13 +119,13 @@ export function Eyebrow({ children, className = "" }) {
 // Double-bezel card: outer machined tray + inner core with inset highlight.
 export function Bezel({ children, className = "", inner = "", tone = "light" }) {
   const trays = {
-    light: "bg-espresso/[0.04] ring-1 ring-espresso/[0.06]",
-    warm: "bg-clay/40 ring-1 ring-espresso/[0.07]",
-    dark: "bg-espresso/80 ring-1 ring-white/10",
+    light: "bg-white/25 ring-1 ring-white/50",
+    warm: "bg-white/25 ring-1 ring-white/50",
+    dark: "bg-bark/40 ring-1 ring-white/15",
   };
   const cores = {
-    light: "bg-cream shadow-[inset_0_1px_1px_rgba(255,255,255,0.7),0_20px_50px_-30px_rgba(36,27,18,0.45)]",
-    warm: "bg-cream shadow-[inset_0_1px_1px_rgba(255,255,255,0.7),0_20px_50px_-30px_rgba(36,27,18,0.45)]",
+    light: "glass-card",
+    warm: "glass-card",
     dark: "bg-bark text-cream shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)]",
   };
   return (

@@ -4,19 +4,21 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Playfair Display"', "Georgia", "serif"],
+        // Аврора · стекло — grotesk headings
+        display: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
         sans: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
       },
       colors: {
-        cream: "#FBF8F2",
-        sand: "#F1EADD",
-        clay: "#E6D9C5",
-        espresso: "#241B12",
-        bark: "#3D2F20",
-        umber: "#5C4A33",
-        gold: "#B07B3C",
-        ember: "#C2622C",
-        sage: "#6E7A5E",
+        // remapped to the Aurora-glass palette (names kept for zero-churn)
+        cream: "#F3F6FD", // light glass base / dark-panel text
+        sand: "#E6ECF8",
+        clay: "#D8E1F2",
+        espresso: "#0F1729", // primary dark text / solid CTA
+        bark: "#241F47", // deep indigo glass panels
+        umber: "#51607A", // secondary text (slate-600)
+        gold: "#7C3AED",
+        ember: "#7C3AED", // primary accent (violet)
+        sage: "#10B981", // success (emerald)
       },
       transitionTimingFunction: {
         spring: "cubic-bezier(0.32, 0.72, 0, 1)",

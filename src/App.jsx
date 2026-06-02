@@ -46,7 +46,15 @@ export default function App() {
   const progress = ((i + 1) / total) * 100;
 
   return (
-    <div className="grain relative h-[100dvh] w-full overflow-hidden bg-cream" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+    <div className="grain relative h-[100dvh] w-full overflow-hidden bg-[#E7EBF6]" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+      {/* aurora glass background — drifting orbs behind every slide */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <div className="drift-a absolute -left-24 -top-28 h-[40rem] w-[40rem] rounded-full bg-fuchsia-400/35 blur-[110px]" />
+        <div className="drift-b absolute right-[-8rem] top-1/4 h-[38rem] w-[38rem] rounded-full bg-sky-400/35 blur-[120px]" />
+        <div className="drift-a absolute bottom-[-10rem] left-1/3 h-[34rem] w-[34rem] rounded-full bg-violet-400/30 blur-[120px]" />
+        <div className="drift-b absolute bottom-0 right-1/4 h-[28rem] w-[28rem] rounded-full bg-emerald-300/28 blur-[110px]" />
+      </div>
+
       {/* top progress hairline */}
       <div className="absolute inset-x-0 top-0 z-50 h-[3px] bg-espresso/[0.06]">
         <div className="h-full bg-ember transition-all duration-700 ease-spring" style={{ width: `${progress}%` }} />
@@ -65,7 +73,7 @@ export default function App() {
       {/* the slide — direction-aware entrance */}
       <div
         key={slide.id}
-        className="h-full w-full"
+        className="relative z-10 h-full w-full"
         style={{ animation: `${dir >= 0 ? "slideInRight" : "slideInLeft"} 0.6s cubic-bezier(0.32,0.72,0,1) both` }}
       >
         {slide.el}

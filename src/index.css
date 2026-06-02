@@ -14,13 +14,34 @@ body,
 
 body {
   margin: 0;
-  background: #fbf8f2;
-  color: #241b12;
+  background: #e7ebf6;
+  color: #0f1729;
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overflow: hidden;
+}
+
+/* ── liquid-glass surfaces (Аврора · стекло) ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.42);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 26px 60px -34px rgba(50, 60, 110, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+.glass-soft {
+  background: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  backdrop-filter: blur(14px) saturate(1.3);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+.text-aurora {
+  background: linear-gradient(95deg, #0ea5e9 0%, #7c3aed 50%, #d946ef 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* film-grain overlay for editorial paper feel */
@@ -35,8 +56,8 @@ body {
 }
 
 ::selection {
-  background: #c2622c;
-  color: #fbf8f2;
+  background: #7c3aed;
+  color: #ffffff;
 }
 
 .thin-scroll::-webkit-scrollbar {

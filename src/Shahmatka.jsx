@@ -66,7 +66,7 @@ export default function Shahmatka() {
   return (
     <div className="grid h-full w-full grid-cols-1 gap-4 lg:grid-cols-[1.35fr_1fr]">
       {/* ─── shahmatka grid ─── */}
-      <div className="flex h-full flex-col rounded-[calc(2rem-0.375rem)] bg-cream p-5">
+      <div className="flex h-full flex-col rounded-[calc(2rem-0.375rem)] bg-white/80 p-5">
         <div className="mb-4 flex items-end justify-between">
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-umber">Жилой комплекс · Дом №8</p>
@@ -164,7 +164,7 @@ export default function Shahmatka() {
 
         {/* mock Bitrix24 deal card */}
         <div
-          className={`rounded-[calc(2rem-0.375rem)] bg-cream p-4 ring-1 ring-espresso/[0.06] transition-all duration-700 ease-spring ${
+          className={`rounded-[calc(2rem-0.375rem)] bg-white/80 p-4 ring-1 ring-espresso/[0.06] transition-all duration-700 ease-spring ${
             deal ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-3"
           }`}
         >

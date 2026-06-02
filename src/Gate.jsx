@@ -25,19 +25,20 @@ export default function Gate({ children }) {
   }
 
   return (
-    <div className="grain relative flex h-[100dvh] w-full items-center justify-center overflow-hidden bg-cream px-6">
-      <div className="pointer-events-none absolute -right-40 -top-40 h-[40rem] w-[40rem] rounded-full bg-ember/10 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-52 -left-40 h-[36rem] w-[36rem] rounded-full bg-sage/10 blur-3xl" />
+    <div className="grain relative flex h-[100dvh] w-full items-center justify-center overflow-hidden bg-[#E7EBF6] px-6">
+      <div className="pointer-events-none absolute -right-40 -top-40 h-[40rem] w-[40rem] rounded-full bg-fuchsia-400/35 blur-3xl" />
+      <div className="pointer-events-none absolute top-1/3 -left-40 h-[36rem] w-[36rem] rounded-full bg-sky-400/35 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-40 right-1/4 h-[28rem] w-[28rem] rounded-full bg-violet-400/30 blur-3xl" />
 
       <div className="relative w-full max-w-md animate-floatUp">
         <div className="rounded-[2rem] bg-espresso/[0.04] p-1.5 ring-1 ring-espresso/[0.06]">
-          <div className="rounded-[calc(2rem-0.375rem)] bg-cream p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.7),0_30px_70px_-40px_rgba(36,27,18,0.5)]">
+          <div className="glass-card rounded-[calc(2rem-0.375rem)] p-8">
             <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-ember/10 text-ember ring-1 ring-ember/15">
               <Icon.shield className="h-6 w-6 stroke-current fill-none" />
             </span>
             <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.24em] text-umber">Закрытый показ</p>
             <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-espresso">
-Битрикс24 для <span className="italic text-ember">застройщика</span>
+Битрикс24 для <span className="text-aurora">застройщика</span>
             </h1>
             <p className="mt-3 text-sm leading-relaxed text-umber">
               Презентация доступна по паролю. Введите его, чтобы открыть показ.

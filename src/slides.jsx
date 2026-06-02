@@ -44,7 +44,7 @@ function Cover() {
         <Reveal i={1}>
           <h1 className="mt-7 font-display text-[3.4rem] font-semibold leading-[0.98] tracking-tight text-espresso md:text-[5.4rem]">
             Битрикс24 <br />
-            <span className="italic text-ember">для застройщика</span>
+            <span className="text-aurora">для застройщика</span>
           </h1>
         </Reveal>
         <Reveal i={2}>
@@ -131,7 +131,7 @@ function Funnel() {
       <div className="mt-12 flex flex-col gap-3 lg:flex-row lg:items-stretch">
         {STAGES.map((s, i) => (
           <Reveal key={s.t} i={3 + i} className="flex-1">
-            <div className="group relative flex h-full flex-col rounded-2xl bg-clay/30 p-5 ring-1 ring-espresso/[0.06] transition-all duration-500 ease-spring hover:-translate-y-1 hover:bg-cream">
+            <div className="group relative flex h-full flex-col rounded-2xl glass-soft p-5 ring-1 ring-espresso/[0.06] transition-all duration-500 ease-spring hover:-translate-y-1 hover:bg-white/60">
               <span className="font-display text-2xl font-semibold text-ember">{i + 1}</span>
               <h3 className="mt-3 font-display text-lg font-semibold leading-tight text-espresso">{s.t}</h3>
               <p className="mt-1 text-[13px] leading-relaxed text-umber">{s.d}</p>
@@ -200,7 +200,7 @@ function Channels() {
           <div className="grid grid-cols-2 gap-3">
             {CHANNELS.map((c, i) => (
               <Reveal key={c} i={2 + i}>
-                <div className="flex items-center gap-3 rounded-2xl bg-cream p-4 ring-1 ring-espresso/[0.06] transition-all duration-500 ease-spring hover:-translate-y-0.5 hover:ring-ember/30">
+                <div className="flex items-center gap-3 rounded-2xl glass-card p-4 ring-1 ring-espresso/[0.06] transition-all duration-500 ease-spring hover:-translate-y-0.5 hover:ring-ember/30">
                   <span className="h-2.5 w-2.5 rounded-full bg-ember" />
                   <span className="text-[15px] font-semibold text-espresso">{c}</span>
                 </div>
@@ -276,7 +276,7 @@ function Telephony() {
             { g: Icon.gauge, t: "Оценка качества", d: "Чек-листы и скоринг по скрипту разговора" },
           ].map((x, i) => (
             <Reveal key={x.t} i={3 + i}>
-              <div className="flex items-center gap-4 rounded-2xl bg-cream p-5 ring-1 ring-espresso/[0.06]">
+              <div className="flex items-center gap-4 rounded-2xl glass-card p-5 ring-1 ring-espresso/[0.06]">
                 <IconCircle glyph={x.g} />
                 <div>
                   <h3 className="font-display text-lg font-semibold text-espresso">{x.t}</h3>
@@ -356,7 +356,7 @@ function Construction() {
                       }`}
                       style={{ left: `${g.a}%`, width: `${g.w}%`, animationDelay: `${250 + i * 110}ms` }}
                     >
-                      {g.now && <span className="pulse-dot mr-1.5 h-1.5 w-1.5 rounded-full bg-cream" />}
+                      {g.now && <span className="pulse-dot mr-1.5 h-1.5 w-1.5 rounded-full glass-card" />}
                       {g.done ? "готово" : g.now ? "в работе" : "план"}
                     </div>
                   </div>
@@ -386,7 +386,7 @@ function Procurement() {
       <div className="mt-12 flex flex-col gap-3 lg:flex-row">
         {PROC.map((p, i) => (
           <Reveal key={p.t} i={3 + i} className="flex-1">
-            <div className="relative flex h-full flex-col rounded-2xl bg-cream p-5 ring-1 ring-espresso/[0.06]">
+            <div className="relative flex h-full flex-col rounded-2xl glass-card p-5 ring-1 ring-espresso/[0.06]">
               <IconCircle glyph={p.g} tone="bark" />
               <h3 className="mt-4 font-display text-lg font-semibold text-espresso">{p.t}</h3>
               <p className="mt-1 text-[15px] text-umber">{p.d}</p>
@@ -417,7 +417,7 @@ function Docs() {
             { t: "Контроль регистрации ДДУ", d: "Стадия «подано в Росреестр» → «зарегистрировано»" },
           ].map((x, i) => (
             <Reveal key={x.t} i={3 + i}>
-              <div className="flex items-start gap-4 rounded-2xl bg-clay/25 p-5 ring-1 ring-espresso/[0.05]">
+              <div className="flex items-start gap-4 rounded-2xl glass-soft p-5 ring-1 ring-espresso/[0.05]">
                 <span className="mt-0.5 flex h-7 w-7 items-center justify-center rounded-full bg-ember/12 text-ember">
                   <Icon.check className="h-4 w-4 stroke-current fill-none" />
                 </span>
@@ -512,7 +512,7 @@ function Service() {
             { t: "Контроль и закрытие", d: "Фотоотчёт, обратная связь, оценка", s: "Решено" },
           ].map((x, i) => (
             <Reveal key={x.t} i={3 + i}>
-              <div className="flex items-center justify-between gap-4 rounded-2xl bg-cream p-5 ring-1 ring-espresso/[0.06]">
+              <div className="flex items-center justify-between gap-4 rounded-2xl glass-card p-5 ring-1 ring-espresso/[0.06]">
                 <div>
                   <h3 className="font-semibold text-espresso">{x.t}</h3>
                   <p className="text-[15px] text-umber">{x.d}</p>
@@ -552,7 +552,7 @@ function Cabinet() {
                 ].map((s) => (
                   <div key={s.t} className="flex items-center gap-3">
                     <span className={`flex h-6 w-6 items-center justify-center rounded-full ${s.done ? "bg-sage/30" : s.now ? "bg-ember" : "bg-white/10"}`}>
-                      {s.done ? <Icon.check className="h-3.5 w-3.5 stroke-current fill-none text-cream" /> : <span className="h-1.5 w-1.5 rounded-full bg-cream" />}
+                      {s.done ? <Icon.check className="h-3.5 w-3.5 stroke-current fill-none text-cream" /> : <span className="h-1.5 w-1.5 rounded-full glass-card" />}
                     </span>
                     <span className={`text-sm ${s.now ? "font-semibold text-cream" : s.done ? "text-cream/80" : "text-cream/45"}`}>{s.t}</span>
                     {s.now && <span className="ml-auto text-[11px] text-ember">сейчас</span>}
@@ -617,7 +617,7 @@ function Showcase() {
         {VIBE.map((v, i) => (
           <Reveal key={v.t} i={3 + i}>
             <Tilt className="h-full">
-              <div className="group relative flex h-full flex-col rounded-2xl bg-cream p-6 ring-1 ring-espresso/[0.06] transition-shadow duration-500 hover:ring-ember/30 hover:shadow-[0_30px_60px_-40px_rgba(36,27,18,0.5)]">
+              <div className="group relative flex h-full flex-col rounded-2xl glass-card p-6 ring-1 ring-espresso/[0.06] transition-shadow duration-500 hover:ring-ember/30 hover:shadow-[0_30px_60px_-40px_rgba(36,27,18,0.5)]">
                 <IconCircle glyph={v.g} />
                 <h3 className="mt-4 font-display text-lg font-semibold text-espresso">{v.t}</h3>
                 <p className="mt-1.5 text-[15px] leading-relaxed text-umber">{v.d}</p>
@@ -676,11 +676,11 @@ function Roadmap() {
       <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {ROAD.map((r, i) => (
           <Reveal key={r.ph} i={3 + i}>
-            <div className="flex h-full flex-col rounded-2xl bg-clay/30 p-6 ring-1 ring-espresso/[0.06]">
+            <div className="flex h-full flex-col rounded-2xl glass-soft p-6 ring-1 ring-espresso/[0.06]">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-ember">{r.ph}</span>
               <h3 className="mt-2 font-display text-xl font-semibold text-espresso">{r.t}</h3>
               <p className="mt-2 flex-1 text-[15px] leading-relaxed text-umber">{r.d}</p>
-              <span className="mt-4 inline-flex w-max items-center gap-1.5 rounded-full bg-cream px-3 py-1 text-xs font-medium text-bark ring-1 ring-espresso/[0.06]">
+              <span className="mt-4 inline-flex w-max items-center gap-1.5 rounded-full glass-card px-3 py-1 text-xs font-medium text-bark ring-1 ring-espresso/[0.06]">
                 {r.w}
               </span>
             </div>

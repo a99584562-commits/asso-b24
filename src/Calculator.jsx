@@ -57,7 +57,7 @@ export default function Calculator() {
   return (
     <div className="grid h-full grid-cols-1 gap-4 lg:grid-cols-[1fr_0.85fr]">
       {/* controls — site widget look */}
-      <div className="flex flex-col rounded-[calc(2rem-0.375rem)] bg-cream p-6">
+      <div className="flex flex-col rounded-[calc(2rem-0.375rem)] bg-white/80 p-6">
         <div className="flex items-center gap-2">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-ember/10 text-ember ring-1 ring-ember/15">
             <Icon.gauge className="h-5 w-5 stroke-current fill-none" />

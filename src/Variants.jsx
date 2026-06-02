@@ -76,6 +76,37 @@ const THEMES = [
     divider: "border-slate-900/10",
   },
   {
+    id: "aurora-glass",
+    name: "Аврора · стекло",
+    kind: "жидкое стекло",
+    root: "bg-[#E7EBF6] text-slate-900",
+    headFont: "font-sans",
+    orbs: (
+      <>
+        <div className="absolute -left-16 -top-20 h-[34rem] w-[34rem] rounded-full bg-fuchsia-400/55 blur-[90px]" />
+        <div className="absolute right-[-4rem] top-1/5 h-[32rem] w-[32rem] rounded-full bg-sky-400/55 blur-[90px]" />
+        <div className="absolute bottom-[-6rem] left-1/3 h-[28rem] w-[28rem] rounded-full bg-violet-400/45 blur-[90px]" />
+        <div className="absolute bottom-4 right-1/4 h-[24rem] w-[24rem] rounded-full bg-emerald-300/45 blur-[90px]" />
+      </>
+    ),
+    eyebrow: "border-white/60 bg-white/40 text-slate-700 backdrop-blur-md",
+    dot: "bg-fuchsia-500",
+    title: "text-slate-900",
+    accent: "bg-gradient-to-r from-sky-500 via-violet-500 to-fuchsia-500 bg-clip-text text-transparent",
+    titleItalic: false,
+    sub: "text-slate-700",
+    card: "bg-white/35 border border-white/70 backdrop-blur-2xl shadow-[0_30px_70px_-30px_rgba(60,70,120,0.5),inset_0_1px_0_rgba(255,255,255,0.9)]",
+    sheen: true,
+    cardTitle: "text-slate-900",
+    cardText: "text-slate-600",
+    icon: "bg-white/70 text-violet-600 ring-1 ring-white shadow-sm backdrop-blur-md",
+    cta: "bg-white/40 text-slate-900 border border-white/70 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.95)]",
+    ctaIcon: "bg-white/60",
+    statV: "text-slate-900",
+    statL: "text-slate-600",
+    divider: "border-slate-900/10",
+  },
+  {
     id: "gold",
     name: "Тёмный люкс",
     kind: "графит + золото",
@@ -205,8 +236,9 @@ export default function Variants() {
         {/* feature cards */}
         <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
           {FEATURES.map((f) => (
-            <div key={f.t} className={`rounded-[1.6rem] p-6 ${th.card}`}>
-              <span className={`flex h-12 w-12 items-center justify-center rounded-2xl ${th.icon}`}>
+            <div key={f.t} className={`relative overflow-hidden rounded-[1.6rem] p-6 ${th.card}`}>
+              {th.sheen && <div className="pointer-events-none absolute inset-x-0 -top-px h-2/3 bg-gradient-to-b from-white/55 to-transparent" />}
+              <span className={`relative flex h-12 w-12 items-center justify-center rounded-2xl ${th.icon}`}>
                 <f.g className="h-6 w-6 stroke-current fill-none" />
               </span>
               <h3 className={`mt-4 text-xl font-semibold ${th.headFont} ${th.cardTitle}`}>{f.t}</h3>

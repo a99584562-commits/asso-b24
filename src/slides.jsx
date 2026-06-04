@@ -656,10 +656,7 @@ function Roadmap() {
             <div className="flex h-full flex-col rounded-2xl glass-soft p-6 ring-1 ring-espresso/[0.06]">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-ember">{r.ph}</span>
               <h3 className="mt-2 font-display text-xl font-semibold text-espresso">{r.t}</h3>
-              <p className="mt-2 flex-1 text-[15px] leading-relaxed text-umber">{r.d}</p>
-              <span className="mt-4 inline-flex w-max items-center gap-1.5 rounded-full glass-card px-3 py-1 text-xs font-medium text-bark ring-1 ring-espresso/[0.06]">
-                {r.w}
-              </span>
+              <p className="mt-2 text-[15px] leading-relaxed text-umber">{r.d}</p>
             </div>
           </Reveal>
         ))}
